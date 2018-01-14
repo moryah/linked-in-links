@@ -4,9 +4,15 @@ import LinksList from  '../presentationals/LinksList';
 import links from  '../../data/links';
 
 class Links extends React.Component {
-  render() {
+  constructor(){
+    super();
+    this.state = {
+      linksQuery: links,
+    }
+  }
 
-    const linkItems = links.map((link) =>
+  render() {
+    const linkItems = this.state.linksQuery.map((link) =>
       <LinksList 
 	linkData = { link } 
       />
