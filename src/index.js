@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Links from './components/containers/Links';
+import LinksContainer from './components/containers/linksContainer';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-	<Links />
+	<LinksContainer />
       </div>
     )
   }

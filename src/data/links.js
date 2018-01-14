@@ -1,5 +1,5 @@
-const links = [{
-    link: "https://github.com/moryah/linked-in-link",
+const LINKS = [{
+    link: "https://github.com/moryah/linked-in-links",
     bookmark: "linked-in-link"
   },
   {
@@ -8,4 +8,4 @@ const links = [{
   }
 ];
 
-export default links
+export default LINKS
