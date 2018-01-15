@@ -7,6 +7,7 @@ class LinkItem extends React.Component {
       <div>
         <b>{this.props.linkData.bookmark}</b>
         <button onClick = {() => this.props.delItem(this.props.id)}>-</button>
+        <button onClick = {() => this.props.editItem(this.props.id)}>/</button>
 	<br />
         <a href={this.props.linkData.link}>{this.props.linkData.link}</a>
 	<br />

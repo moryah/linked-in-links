@@ -26,6 +26,15 @@ class LinksContainer extends React.Component {
     })
   }
 
+  editLink(id){
+    this.setState({
+      linksQueryEdited: this.state.linksQuery.splice(id, 1, {
+        link: "https://github.com/moryah/tiny-blog",
+        bookmark: "tiny-blog"
+      })
+    })
+  }
+
   render() {
     const LINK_ITEMS = this.state.linksQuery.map((link, index) =>
       <LinkItem 
@@ -33,6 +42,7 @@ class LinksContainer extends React.Component {
 	id = {index}
 	linkData = { link } 
 	delItem = { this.delLink.bind(this) }
+	editItem = { this.editLink.bind(this) }
       />
     );
 
