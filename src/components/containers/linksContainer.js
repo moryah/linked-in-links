@@ -20,17 +20,27 @@ class LinksContainer extends React.Component {
     })
   }
 
+  delLink(id){
+    this.setState({
+      linksQueryLess: this.state.linksQuery.splice(id, 1)
+    })
+  }
+
   render() {
     const LINK_ITEMS = this.state.linksQuery.map((link, index) =>
       <LinkItem 
 	key = { index }
+	id = {index}
 	linkData = { link } 
+	delItem = { this.delLink.bind(this) }
       />
     );
 
     return (
       <div>
-        <h3> Linked In Links <button onClick = {this.addLink.bind(this)}>+</button></h3>
+        <h3> Linked In Links 
+          <button onClick = {this.addLink.bind(this)}>+</button>
+        </h3>
 	{LINK_ITEMS}
       </div>
     )
