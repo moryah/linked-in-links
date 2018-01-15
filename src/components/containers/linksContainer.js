@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LinkItem from  '../presentationals/linkItem';
+import FormAddLink from  './FormAddLink';
 import LINKS from  '../../data/links';
 
 class LinksContainer extends React.Component {
@@ -8,16 +9,16 @@ class LinksContainer extends React.Component {
     super();
     this.state = {
       linksQuery: LINKS,
-    }
+      addFormClicked: false,
+    };
+    this.addLink = this.addLink.bind(this);
   }
 
-  addLink(){
+  addLink(newLink){
     this.setState({
-      linksQueryNew: this.state.linksQuery.push({
-        link: "https://github.com/moisesrms/my-money-app-backend",
-        bookmark: "my-money-app-backend"
-      })
+      linksQueryNew: this.state.linksQuery.push(newLink)
     })
+    this.addFormStatus(false)
   }
 
   delLink(id){
@@ -35,6 +36,12 @@ class LinksContainer extends React.Component {
     })
   }
 
+  addFormStatus(status){
+    this.setState({
+      addFormClicked: status
+    })
+  }
+ 
   render() {
     const LINK_ITEMS = this.state.linksQuery.map((link, index) =>
       <LinkItem 
@@ -48,9 +55,21 @@ class LinksContainer extends React.Component {
 
     return (
       <div>
-        <h3> Linked In Links 
-          <button onClick = {this.addLink.bind(this)}>+</button>
+        <h3> 
+	  Linked In Links 
+          <button onClick = {() => this.addFormStatus(true)}>+</button>
         </h3>
+
+	  {
+            this.state.addFormClicked?
+
+            <FormAddLink addLink = {this.addLink} />
+
+            :
+
+            <div></div>
+          }
+
 	{LINK_ITEMS}
       </div>
     )
