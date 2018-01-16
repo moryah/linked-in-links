@@ -5,7 +5,8 @@ class FormEditLink extends React.Component {
     super(props);
     this.state = {
       bookmark: this.props.linkData.bookmark,
-      link: this.props.linkData.link
+      link: this.props.linkData.link,
+      tags: this.props.linkData.tags
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
@@ -16,7 +17,8 @@ class FormEditLink extends React.Component {
     event.preventDefault();
     this.props.editLink({
         link: this.state.link,
-        bookmark: this.state.bookmark
+        bookmark: this.state.bookmark,
+        tags: this.state.tags
       },
       this.props.id
     ); 

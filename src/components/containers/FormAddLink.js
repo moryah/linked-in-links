@@ -3,7 +3,7 @@ import React from 'react';
 class FormAddLink extends React.Component {
   constructor(props){
     super(props);
-    this.state = {bookmark: '', link: '1'}
+    this.state = {bookmark: '', link: '', tags: []}
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
     this.handleLink = this.handleLink.bind(this);
@@ -13,7 +13,8 @@ class FormAddLink extends React.Component {
     event.preventDefault();
     this.props.addLink({
       link: this.state.link,
-      bookmark: this.state.bookmark
+      bookmark: this.state.bookmark,
+      tags: this.state.tags
     }); 
   }
 

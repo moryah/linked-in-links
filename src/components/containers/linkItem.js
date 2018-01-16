@@ -23,6 +23,12 @@ class LinkItem extends React.Component {
   }
 
   render() {
+  const TAP_ITEMS = this.props.linkData.tags.map((tag, index) =>
+    <i key = {index} >
+      [{tag}]
+    </i>
+    );
+
     return (
       <div>
         <b>{this.props.linkData.bookmark}</b>
@@ -30,6 +36,8 @@ class LinkItem extends React.Component {
         <button onClick = {() => this.editFormStatus(true)}>/</button>
       	<br />
         <a href={this.props.linkData.link}>{this.props.linkData.link}</a>
+      	<br />
+        {TAP_ITEMS}
 	      {
           this.state.editFormClicked?
             <FormEditLink 
