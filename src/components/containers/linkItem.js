@@ -23,7 +23,7 @@ class LinkItem extends React.Component {
   }
 
   render() {
-  const TAP_ITEMS = this.props.linkData.tags.map((tag, index) =>
+  const TAG_ITEMS = this.props.linkData.tags.map((tag, index) =>
     <i key = {index} >
       [{tag}]
     </i>
@@ -37,7 +37,7 @@ class LinkItem extends React.Component {
       	<br />
         <a href={this.props.linkData.link}>{this.props.linkData.link}</a>
       	<br />
-        {TAP_ITEMS}
+        {TAG_ITEMS}
 	      {
           this.state.editFormClicked?
             <FormEditLink 
