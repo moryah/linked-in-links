@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LinkItem from  '../presentationals/linkItem';
+import LinkItem from  './linkItem';
 import FormAddLink from  './FormAddLink';
 import LINKS from  '../../data/links';
 
@@ -12,6 +12,8 @@ class LinksContainer extends React.Component {
       addFormClicked: false,
     };
     this.addLink = this.addLink.bind(this);
+    this.editLink = this.editLink.bind(this);
+    this.addFormStatus = this.addFormStatus.bind(this);
   }
 
   addLink(newLink){
@@ -27,12 +29,9 @@ class LinksContainer extends React.Component {
     })
   }
 
-  editLink(id){
+  editLink(newLink, id){
     this.setState({
-      linksQueryEdited: this.state.linksQuery.splice(id, 1, {
-        link: "https://github.com/moryah/tiny-blog",
-        bookmark: "tiny-blog"
-      })
+      linksQueryEdited: this.state.linksQuery.splice(id, 1, newLink)
     })
   }
 
@@ -44,33 +43,31 @@ class LinksContainer extends React.Component {
  
   render() {
     const LINK_ITEMS = this.state.linksQuery.map((link, index) =>
-      <LinkItem 
-	key = { index }
-	id = {index}
-	linkData = { link } 
-	delItem = { this.delLink.bind(this) }
-	editItem = { this.editLink.bind(this) }
+    <LinkItem 
+	    key = {index}
+	    id = {index}
+	    linkData = {link} 
+	    delLink = {this.delLink.bind(this)}
+	    editLink = {this.editLink}
       />
     );
 
     return (
       <div>
         <h3> 
-	  Linked In Links 
+	         Linked In Links 
           <button onClick = {() => this.addFormStatus(true)}>+</button>
         </h3>
-
-	  {
-            this.state.addFormClicked?
-
-            <FormAddLink addLink = {this.addLink} />
-
+	      {
+          this.state.addFormClicked?
+            <FormAddLink 
+	            addLink = {this.addLink} 
+	            addFormStatus = {this.addFormStatus}
+	          />
             :
-
             <div></div>
-          }
-
-	{LINK_ITEMS}
+        }       
+	      {LINK_ITEMS}
       </div>
     )
   }

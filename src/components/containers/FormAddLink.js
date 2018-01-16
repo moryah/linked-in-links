@@ -12,17 +12,17 @@ class FormAddLink extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.addLink({
-        link: this.state.link,
-        bookmark: this.state.bookmark
-      }); 
+      link: this.state.link,
+      bookmark: this.state.bookmark
+    }); 
   }
 
   handleBookmark(event){
-    this.setState({ bookmark: event.target.value });
+    this.setState({bookmark: event.target.value});
   }
   
   handleLink(event){
-    this.setState({ link: event.target.value });
+    this.setState({link: event.target.value});
   }
 
   render() {
@@ -33,6 +33,7 @@ class FormAddLink extends React.Component {
         Link: <input type="text" name="link" onChange={this.handleLink} />
         <br />
         <input type="submit" value="add" />
+        <input type="button" value="back" onClick={() => this.props.addFormStatus(false)} />
         <br />
         <br />
       </form>
