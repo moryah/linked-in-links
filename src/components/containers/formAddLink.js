@@ -62,7 +62,9 @@ class FormAddLink extends React.Component {
         <br />
         Tags: <input type="text" name="tag" onChange={this.handleTag} />
         <input type="button" value="+tag" onClick={this.addTag} />
+
         {TAG_ITEMS}
+
         <br />
         <input type="submit" value="add" />
         <input type="button" value="back" onClick={() => this.props.addFormStatus(false)} />

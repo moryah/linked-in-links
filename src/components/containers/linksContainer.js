@@ -1,7 +1,6 @@
 import React from 'react';
 
-import LinkItem from  './linkItem';
-import FormAddLink from  './FormAddLink';
+import OwnerItem from  './ownerItem';
 import LINKS from  '../../data/links';
 
 class LinksContainer extends React.Component {
@@ -9,65 +8,49 @@ class LinksContainer extends React.Component {
     super();
     this.state = {
       linksQuery: LINKS,
-      addFormClicked: false,
+      user: "moises"
     };
     this.addLink = this.addLink.bind(this);
     this.editLink = this.editLink.bind(this);
-    this.addFormStatus = this.addFormStatus.bind(this);
   }
 
   addLink(newLink){
     this.setState({
-      linksQueryNew: this.state.linksQuery.push(newLink)
+      linksQueryNew: this.state.linksQuery.find(x => x.owner === this.state.user).bookmarks.push(newLink)
     })
-    this.addFormStatus(false)
   }
 
   delLink(id){
     this.setState({
-      linksQueryLess: this.state.linksQuery.splice(id, 1)
+      linksQueryLess: this.state.linksQuery.find(x => x.owner === this.state.user).bookmarks.splice(id, 1)
     })
   }
 
   editLink(newLink, id){
     this.setState({
-      linksQueryEdited: this.state.linksQuery.splice(id, 1, newLink)
+      linksQueryEdited: this.state.linksQuery.find(x => x.owner === this.state.user).bookmarks.splice(id, 1, newLink)
     })
   }
 
-  addFormStatus(status){
-    this.setState({
-      addFormClicked: status
-    })
-  }
- 
   render() {
-    const LINK_ITEMS = this.state.linksQuery.map((link, index) =>
-    <LinkItem 
+    const OWNER_ITEMS = this.state.linksQuery.map((owner, index) =>
+    <OwnerItem 
 	    key = {index}
 	    id = {index}
-	    linkData = {link} 
+	    linkData = {owner} 
+      editEnable = {(owner.owner == this.state.user)}
+	    addLink = {this.addLink}
 	    delLink = {this.delLink.bind(this)}
 	    editLink = {this.editLink}
       />
     );
-
+   
     return (
       <div>
-        <h3> 
-	         Linked In Links 
-          <button onClick = {() => this.addFormStatus(true)}>+</button>
-        </h3>
-	      {
-          this.state.addFormClicked?
-            <FormAddLink 
-	            addLink = {this.addLink} 
-	            addFormStatus = {this.addFormStatus}
-	          />
-            :
-            <div></div>
-        }       
-	      {LINK_ITEMS}
+        <h3> Linked In Links  </h3>
+	            
+	      {OWNER_ITEMS}
+
       </div>
     )
   }

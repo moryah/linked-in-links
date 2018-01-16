@@ -1,3 +1,4 @@
 node_modules
 *.log
 *.swp
+public/bundle.js
