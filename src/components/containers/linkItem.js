@@ -1,8 +1,8 @@
 import React from 'react';
-import FormEditLink from  './formEditLink';
+import FormEditLink from './formEditLink';
 
 class LinkItem extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       editFormClicked: false,
@@ -11,57 +11,56 @@ class LinkItem extends React.Component {
     this.editFormStatus = this.editFormStatus.bind(this);
   }
 
-  editFormStatus(status){
+  editFormStatus(status) {
     this.setState({
-      editFormClicked: status
-    })
+      editFormClicked: status,
+    });
   }
 
-  editLink(newLink, id){
-    this.props.editLink(newLink, id)
-    this.editFormStatus(false)
+  editLink(newLink, id) {
+    this.props.editLink(newLink, id);
+    this.editFormStatus(false);
   }
 
   render() {
     const TAG_ITEMS = this.props.linkData.tags.map((tag, index) =>
       <i key = {index} >
-      [{tag}]
-      </i>
-    );
+        [{tag}]
+      </i>);
 
     return (
       <div>
-      <b>{this.props.linkData.bookmark}</b>
-      {
-        this.props.editEnable?
-        <b>
-        <button onClick = {() => this.props.delLink(this.props.id)}>-</button>
-        <button onClick = {() => this.editFormStatus(true)}>/</button>
-        </b>
-        :
-        <b></b>
-      }
-      <br />
-      <a href={this.props.linkData.link}>{this.props.linkData.link}</a>
-      <br />
+        <b>{this.props.linkData.bookmark}</b>
+        {
+          this.props.editEnable ?
+            <b>
+              <button onClick = {() => this.props.delLink(this.props.id)}>-</button>
+              <button onClick = {() => this.editFormStatus(true)}>/</button>
+            </b>
+            :
+            <b></b>
+        }
+        <br />
+        <a href={this.props.linkData.link}>{this.props.linkData.link}</a>
+        <br />
 
-      {TAG_ITEMS}
+        {TAG_ITEMS}
 
-      {
-        this.state.editFormClicked?
-          <FormEditLink 
-        linkData = {this.props.linkData}
-        id = {this.props.id} 
-        editLink = {this.editLink} 
-        editFormStatus = {this.editFormStatus}
-          />
-          :
-          <div></div>
-      }
-      <br />
+        {
+          this.state.editFormClicked ?
+            <FormEditLink
+              linkData = {this.props.linkData}
+              id = {this.props.id}
+              editLink = {this.editLink}
+              editFormStatus = {this.editFormStatus}
+            />
+            :
+            <div></div>
+        }
+        <br />
       </div>
-    )
+    );
   }
 }
 
-export default LinkItem
+export default LinkItem;

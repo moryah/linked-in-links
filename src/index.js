@@ -7,13 +7,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-	<LinksContainer />
+        <LinksContainer />
       </div>
-    )
+    );
   }
 }
 
 ReactDOM.render(
-    <App />,
-  document.getElementById('app')
-)
+  <App />,
+  document.getElementById('app'),
+);

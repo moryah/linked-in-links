@@ -1,14 +1,14 @@
 import React from 'react';
 
 class FormAddLink extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      bookmark: '', 
-      link: '', 
+      bookmark: '',
+      link: '',
       tags: [],
       newTag: '',
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
     this.handleLink = this.handleLink.bind(this);
@@ -22,37 +22,36 @@ class FormAddLink extends React.Component {
     this.props.addLink({
       link: this.state.link,
       bookmark: this.state.bookmark,
-      tags: this.state.tags
-    }); 
+      tags: this.state.tags,
+    });
   }
 
-  handleBookmark(event){
-    this.setState({bookmark: event.target.value});
-  }
-  
-  handleLink(event){
-    this.setState({link: event.target.value});
+  handleBookmark(event) {
+    this.setState({ bookmark: event.target.value });
   }
 
-  handleTag(event){
-    this.setState({newTag: event.target.value});
+  handleLink(event) {
+    this.setState({ link: event.target.value });
   }
 
-  addTag(event){
-    this.setState({tagsAdded: this.state.tags.push(this.state.newTag)});
+  handleTag(event) {
+    this.setState({ newTag: event.target.value });
   }
 
-  delTag(event){
-    this.setState({tagsDeleted: this.state.tags.splice(event.target.id, 1)});
+  addTag() {
+    this.setState({ tagsAdded: this.state.tags.push(this.state.newTag) });
+  }
+
+  delTag(event) {
+    this.setState({ tagsDeleted: this.state.tags.splice(event.target.id, 1) });
   }
 
   render() {
     const TAG_ITEMS = this.state.tags.map((tag, index) =>
-    <i key = {index} >
-      {tag}
-      <input type="button" id={index} value="-" onClick={this.delTag} />
-    </i>
-    );
+      <i key = {index} >
+        {tag}
+        <input type="button" id={index} value="-" onClick={this.delTag} />
+      </i>);
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -71,8 +70,8 @@ class FormAddLink extends React.Component {
         <br />
         <br />
       </form>
-    )
+    );
   }
 }
 
-export default FormAddLink
+export default FormAddLink;
