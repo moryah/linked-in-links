@@ -12,6 +12,7 @@ class LinksContainer extends React.Component {
     };
     this.addLink = this.addLink.bind(this);
     this.editLink = this.editLink.bind(this);
+    this.delLink = this.delLink.bind(this);
   }
 
   addLink(newLink) {
@@ -40,13 +41,13 @@ class LinksContainer extends React.Component {
         linkData = {owner}
         editEnable = {(owner.owner === this.state.user)}
         addLink = {this.addLink}
-        delLink = {this.delLink.bind(this)}
+        delLink = {this.delLink}
         editLink = {this.editLink}
       />);
 
     return (
       <div>
-        <h3> Linked In Links  </h3>
+        <h3> Linked In Links </h3>
 
         {OWNER_ITEMS}
 

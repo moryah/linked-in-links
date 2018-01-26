@@ -1,17 +1,5 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-
-import LinksContainer from './components/containers/linksContainer';
-
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <LinksContainer />
-      </div>
-    );
-  }
-}
+import App from './app';
 
 ReactDOM.render(
   <App />,

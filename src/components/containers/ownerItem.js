@@ -30,7 +30,7 @@ class OwnerItem extends React.Component {
         id = {index}
         linkData = {link}
         editEnable = {this.props.editEnable}
-        delLink = {this.props.delLink.bind(this)}
+        delLink = {this.props.delLink}
         editLink = {this.props.editLink}
       />);
 
