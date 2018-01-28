@@ -18,7 +18,7 @@ class LinkItem extends React.Component {
   }
 
   editLink(newLink, id) {
-    this.props.editLink(newLink, id);
+    this.props.dispatchAction("EDIT",id , newLink)
     this.editFormStatus(false);
   }
 
@@ -34,7 +34,7 @@ class LinkItem extends React.Component {
         {
           this.props.editEnable ?
             <b>
-              <button onClick = {() => this.props.delLink(this.props.id)}>-</button>
+              <button onClick = {() => this.props.dispatchAction("DELETE", this.props.id)}>-</button>
               <button onClick = {() => this.editFormStatus(true)}>/</button>
             </b>
             :

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import FormAddLink from './formAddLink';
 import LinkItem from './linkItem';
 
@@ -13,7 +12,7 @@ class OwnerItem extends React.Component {
   }
 
   addLink(newLink) {
-    this.props.addLink(newLink);
+    this.props.dispatchAction("ADD",null , newLink)
     this.addFormStatus(false);
   }
 
@@ -30,8 +29,7 @@ class OwnerItem extends React.Component {
         id = {index}
         linkData = {link}
         editEnable = {this.props.editEnable}
-        delLink = {this.props.delLink}
-        editLink = {this.props.editLink}
+        dispatchAction = {this.props.dispatchAction}
       />);
 
     return (
