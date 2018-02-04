@@ -23,12 +23,12 @@ class FormEditLink extends React.Component {
     event.preventDefault();
     console.log('handleSubmit');
     this.props.EditLinkClick(
+      this.props.id,
       {
         link: this.state.link,
         bookmark: this.state.bookmark,
         tags: this.state.tags,
-      },
-      this.props.id,
+      }      
     );
   }
 
