@@ -6,19 +6,20 @@ const initialState = {
 }
 
 function LinksApp(state = initialState, action) {
-  switch(action.type) {
+  let linksQueryCopy;
+  switch (action.type) {
     case 'DELETE_LINK':
-      let stateDel = Object.assign({}, state)
-      stateDel.linksQuery.find(x => x.owner === state.user).bookmarks.splice(action.id, 1)
-      return stateDel
+      linksQueryCopy = JSON.parse(JSON.stringify(state.linksQuery))
+      linksQueryCopy.find(x => x.owner === state.user).bookmarks.splice(action.id, 1)
+      return { ...state, linksQuery: linksQueryCopy }
     case 'ADD_LINK':
-      let stateNew = Object.assign({}, state)
-      stateNew.linksQuery.find(x => x.owner === state.user).bookmarks.push(action.newLink)
-      return stateNew
+      linksQueryCopy = JSON.parse(JSON.stringify(state.linksQuery))
+      linksQueryCopy.find(x => x.owner === state.user).bookmarks.push(action.newLink)
+      return { ...state, linksQuery: linksQueryCopy }
     case 'EDIT_LINK':
-      let stateEdit = Object.assign({}, state)
-      stateEdit.linksQuery.find(x => x.owner === state.user).bookmarks.splice(action.id, 1, action.newLink)
-      return stateEdit
+      linksQueryCopy = JSON.parse(JSON.stringify(state.linksQuery))
+      linksQueryCopy.find(x => x.owner === state.user).bookmarks.splice(action.id, 1, action.newLink)
+      return { ...state, linksQuery: linksQueryCopy }
     default:
       return state
   }

@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { EditLink } from '../../actions/editLink'
 
 class FormEditLink extends React.Component {
   constructor(props) {
@@ -18,7 +21,8 @@ class FormEditLink extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.editLink(
+    console.log('handleSubmit');
+    this.props.EditLinkClick(
       {
         link: this.state.link,
         bookmark: this.state.bookmark,
@@ -50,13 +54,13 @@ class FormEditLink extends React.Component {
 
   render() {
     const TAG_ITEMS = this.state.tags.map((tag, index) =>
-      <i key = {index} >
+      <i key={index} >
         {tag}
         <input type="button" id={index} value="-" onClick={this.delTag} />
       </i>);
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit = {this.handleSubmit} >
         <br />
         Bookmark:
         <input type="text" name="bookmark" value={this.state.bookmark} onChange={this.handleBookmark} />
@@ -79,4 +83,13 @@ class FormEditLink extends React.Component {
   }
 }
 
-export default FormEditLink;
+const mapDispatchToProps = (dispatch) => ({
+  EditLinkClick(id, newLink) {
+    dispatch(EditLink(id, newLink));
+  },
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(FormEditLink);

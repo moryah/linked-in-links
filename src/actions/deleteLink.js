@@ -1,9 +1,7 @@
-function DeleteLink(id) {
-  const DELETE_LINK = 'DELETE_LINK'
+export const DeleteLink = (id) => {
+  console.log('DeleteLink Action');
   return {
-    type: DELETE_LINK,
+    type: 'DELETE_LINK',
     id
   }
-}
-
-export default DeleteLink
+};

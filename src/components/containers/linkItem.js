@@ -1,5 +1,8 @@
 import React from 'react';
 import FormEditLink from './formEditLink';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { DeleteLink } from '../../actions/deleteLink'
 
 class LinkItem extends React.Component {
   constructor() {
@@ -34,7 +37,7 @@ class LinkItem extends React.Component {
         {
           this.props.editEnable ?
             <b>
-              <button onClick = {() => this.props.dispatchAction("DELETE", this.props.id)}>-</button>
+              <button onClick = {() => this.props.DeleteLinkClick(this.props.id)}>-</button>
               <button onClick = {() => this.editFormStatus(true)}>/</button>
             </b>
             :
@@ -63,4 +66,15 @@ class LinkItem extends React.Component {
   }
 }
 
-export default LinkItem;
+const mapDispatchToProps = (dispatch) => ({
+  DeleteLinkClick(id) {
+    dispatch(DeleteLink(id));
+  },
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LinkItem);
+
+

@@ -2,17 +2,21 @@ import React from 'react';
 import FormAddLink from './formAddLink';
 import LinkItem from './linkItem';
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { AddLink } from '../../actions/addLink'
+
 class OwnerItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       addFormClicked: false,
     };
-    this.addLink = this.addLink.bind(this);
+    this.adicionaLink = this.adicionaLink.bind(this);
   }
 
-  addLink(newLink) {
-    this.props.dispatchAction("ADD",null , newLink)
+  adicionaLink(newLink) {
+    this.props.AddLink(newLink)
     this.addFormStatus(false);
   }
 
@@ -29,7 +33,7 @@ class OwnerItem extends React.Component {
         id = {index}
         linkData = {link}
         editEnable = {this.props.editEnable}
-        dispatchAction = {this.props.dispatchAction}
+        //dispatchAction = {this.props.dispatchAction}
       />);
 
     return (
@@ -49,7 +53,7 @@ class OwnerItem extends React.Component {
         {
           this.state.addFormClicked ?
             <FormAddLink
-              addLink = {this.addLink}
+              addLink = {this.props.AddLink} //{this.adicionaLink}
               addFormStatus = {this.addFormStatus.bind(this)}
             />
             :
@@ -63,4 +67,5 @@ class OwnerItem extends React.Component {
   }
 }
 
-export default OwnerItem;
+const mapDispatchToProps = dispatch => bindActionCreators({AddLink}, dispatch)
+export default connect(null, mapDispatchToProps)(OwnerItem)

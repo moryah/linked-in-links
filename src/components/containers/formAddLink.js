@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { AddLink } from '../../actions/addLink'
 
 class FormAddLink extends React.Component {
   constructor(props) {
@@ -19,11 +22,11 @@ class FormAddLink extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addLink({
+    this.props.AddLinkClick({
       link: this.state.link,
       bookmark: this.state.bookmark,
       tags: this.state.tags,
-    });
+    })
   }
 
   handleBookmark(event) {
@@ -48,13 +51,13 @@ class FormAddLink extends React.Component {
 
   render() {
     const TAG_ITEMS = this.state.tags.map((tag, index) =>
-      <i key = {index} >
+      <i key={index} >
         {tag}
         <input type="button" id={index} value="-" onClick={this.delTag} />
       </i>);
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit = {this.handleSubmit} >
         Bookmark: <input type="text" name="bookmark" onChange={this.handleBookmark} />
         <br />
         Link: <input type="text" name="link" onChange={this.handleLink} />
@@ -69,9 +72,18 @@ class FormAddLink extends React.Component {
         <input type="button" value="back" onClick={() => this.props.addFormStatus(false)} />
         <br />
         <br />
-      </form>
+      </form >
     );
   }
 }
 
-export default FormAddLink;
+const mapDispatchToProps = (dispatch) => ({
+  AddLinkClick(newLink) {
+    dispatch(AddLink(newLink));
+  },
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(FormAddLink);
